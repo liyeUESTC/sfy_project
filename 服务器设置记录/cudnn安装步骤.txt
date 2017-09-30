@@ -1,0 +1,7 @@
+udnn在nvidia显卡驱动和cuda安装完成之后再安装，加速cuda的
+tar -zxvf cudnn-8.0-linux-x64-v5.1.tgz   //解压后文件为cuda
+sudo cd cuda/include 
+sudo cp *.h  /usr/local/cuda/include/     //复制cuda/include下所有的.h文件
+sudo cd cuda/lib64           
+sudo cp libcudnn*  /usr/local/cuda/lib64/
+sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*

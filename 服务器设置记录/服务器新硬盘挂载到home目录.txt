@@ -1,0 +1,14 @@
+1.对新增磁盘进行分区，按提示操作  fdisk
+2.分区格式化 mkfs -t ext4 /dev/sdxx
+3.将新硬盘临时挂载到一个目录下
+cd /mnt/
+sudo mkdir tmp
+sudo mount /dev/sdxx  /mnt/tmp   //挂载到tmp目录下
+sudo cp -a /home/*  /mnt/tmp/     //将home目录下内容拷贝到临时目录下   
+sudo rm -r /home/*
+sudo umount /dev/sdxx
+
+sudo vim /etc/fstab   //设置开机挂载
+末尾增加一行
+/dev/sdxx   /home    ext4      defaults    1    2
+sudo mount -a

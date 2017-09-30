@@ -1,0 +1,13 @@
+显卡驱动安装步骤：
+1.在NVIDIA官网下载显卡和系统匹配的驱动（不用最新的 比较新的就行）
+2.进入/etc/modprobe.d/blacklist.conf 文件
+添加一行 ： blacklist  nouveau 
+禁用开源驱动
+3.按CTRL+ALT+F1 进入tty1
+  命令:sudo service lightdm stop
+  关闭图形界面
+4.使用命令:sudo sh XXX.run 
+  运行下载的驱动安装程序，一路点accept或者yes
+5.使用命令:sudo service lightdm start
+   开启图形界面。
+6.如果遇到无限登录问题，重启，进去bios，关掉集成显卡，把显示器接到独立显卡上即可

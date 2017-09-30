@@ -1,0 +1,30 @@
+﻿vap服务运行步骤：
+1.解压文件
+2.替换文件
+3.安装boost库
+	1.tar -xzvf boost_1.54.tar.gz
+	2.cd boost_1.54.0
+	3.sudo ./bootstrap.sh
+	4.sudo ./b2 --with-thread stage cxxflags=-std=c++11
+	5.sudo ./b2 install cxxflags=-std=c++11
+4.安装opencv库
+	sudo apt-get install libcv-dev
+5.安装glog库
+	sudo apt-get install libgflags-dev libgoogle-glog-dev
+6.安装dlib-18.18库
+	1.github上下载文件
+	2.进入dlib目录
+	3.建立build目录
+	4.进入build目录
+	5.cmake ..
+	6.make
+	7.复制libdlib.so libdlib.so.18.18到/usr/local/lib下
+7.sudo apt-get install libleveldb-dev liblmdb-dev
+8.安装matio库
+	1.github上下载文件
+	2.解压文件 进入matio目录
+	3.sudo ./configure
+	4.sudo make
+	5.sudo make check
+	6.sudo make install
+9.
