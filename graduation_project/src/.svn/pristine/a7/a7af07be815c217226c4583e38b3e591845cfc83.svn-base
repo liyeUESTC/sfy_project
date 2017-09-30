@@ -1,0 +1,34 @@
+
+#include <iostream>
+
+#include "radar_pulse_manager.h"
+#include "base_define.h"
+#include "sdif_algorithm.h"
+#include "pri_algorithm.h"
+
+using namespace std;
+
+int main(int argc,char* argv[])
+{
+    if(argc != 2)
+    {
+        cout << "usage::" << argv[0] << "  config_file" << endl;
+        return FAILED;
+    }
+    RadarPulseManager *radar_pulse_manager = RadarPulseManager::GetInstance();
+    if(radar_pulse_manager->Init(argv[1]) == FAILED)
+    {
+        cout << "Init error" << endl;
+        return FAILED;
+    }
+    if(radar_pulse_manager->Generate() == FAILED)
+    {
+        cout << "Generate FAILED" << endl;
+        return FAILED;
+    }
+    
+    vector<struct PulseDescribeWord> &pdw_vec =radar_pulse_manager->pdw_vec();
+    PRIAlgorithm pri_algorithm(pdw_vec,100.0,kPRIParam1,kPRIParam2,kPRIParam3);
+    pri_algorithm.Run();    
+    return SUCCESSFUL;
+}

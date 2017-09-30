@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBaseClass.a  CMakeFiles/BaseClass.dir/radar_pulse.cpp.o CMakeFiles/BaseClass.dir/radar_pulse_manager.cpp.o CMakeFiles/BaseClass.dir/sdif_algorithm.cpp.o CMakeFiles/BaseClass.dir/cdif_algorithm.cpp.o CMakeFiles/BaseClass.dir/pri_algorithm.cpp.o
+/usr/bin/ranlib libBaseClass.a

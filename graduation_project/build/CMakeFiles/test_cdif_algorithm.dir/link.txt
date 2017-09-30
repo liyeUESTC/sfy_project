@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -std=c++11   CMakeFiles/test_cdif_algorithm.dir/test/test_sdif_algorithm.cpp.o  -o /home/shifangyan/graduation_project/bin/test_cdif_algorithm -rdynamic common/libBaseClass.a 
