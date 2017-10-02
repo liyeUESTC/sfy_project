@@ -1,20 +1,23 @@
-在/etc/apt/source.list文件中添加以下，将源更改为阿里源
+﻿在/etc/apt/source.list文件中添加以下，将源更改为中科大源  教育网推荐
 ps:我们学校的源似乎已经挂了 用不了 可惜
 
-//阿里源
-deb http://cn.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
-deb http://cn.archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
-deb http://cn.archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb http://cn.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
-##测试版源
-deb http://cn.archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
-# 源码
-deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
-deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse
-deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
-deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
-##测试版源
-deb-src http://cn.archive.ubuntu.com/ubuntu/ trusty-proposed main restricted universe multiverse
-# Canonical 合作伙伴和附加
-deb http://archive.canonical.com/ubuntu/ trusty partner
-deb http://extras.ubuntu.com/ubuntu/ trusty main
+//中科大源
+deb http://debian.ustc.edu.cn/ubuntu/ trusty main multiverse restricted universe
+
+deb http://debian.ustc.edu.cn/ubuntu/ trusty-backports main multiverse restricted universe
+
+deb http://debian.ustc.edu.cn/ubuntu/ trusty-proposed main multiverse restricted universe
+
+deb http://debian.ustc.edu.cn/ubuntu/ trusty-security main multiverse restricted universe
+
+deb http://debian.ustc.edu.cn/ubuntu/ trusty-updates main multiverse restricted universe
+
+deb-src http://debian.ustc.edu.cn/ubuntu/ trusty main multiverse restricted universe
+
+deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-backports main multiverse restricted universe
+
+deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-proposed main multiverse restricted universe
+
+deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-security main multiverse restricted universe
+
+deb-src http://debian.ustc.edu.cn/ubuntu/ trusty-updates main multiverse restricted universe

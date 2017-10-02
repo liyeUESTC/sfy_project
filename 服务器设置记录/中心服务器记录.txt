@@ -1,2 +1,4 @@
-214   显卡1070*1   系统14.04  boot F11   bios DEL
-212   boot f11       bios ctrl+h
+214   显卡1070*1   系统14.04  boot F11       bios DEL
+212                系统14.04  boot f11       bios ctrl+h
+216   titan*1      系统14.04 
+218   无           系统14.04

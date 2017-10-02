@@ -1,0 +1,2 @@
+1.wget https://raw.github.com/ma6174/vim/master/setup.sh
+2.sudo sh setup.sh
