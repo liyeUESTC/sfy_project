@@ -1,0 +1,4 @@
+../../common/writer.cpp: In member function ‘int Writer::WriteIovec()’:
+../../common/writer.cpp:62:30: warning: pointer of type ‘void *’ used in arithmetic [-Wpointer-arith]
+    iter->send_iovec.iov_base += writed_size;
+                              ^
