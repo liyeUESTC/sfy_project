@@ -17,11 +17,11 @@
 
 
 MyLog * MyLog::instance_ = nullptr;
-std::string MyLog::log_buf_;
+//std::string MyLog::log_buf_;
 
 MyLog::MyLog()
 {
-    fd_ = open("my_log.txt",O_WRONLY|O_APPEND|O_CREAT,S_IRUSR|S_IRGRP|S_IROTH);
+    fd_ = open("my_log.txt",O_WRONLY|O_APPEND|O_CREAT,S_IRUSR|S_IWUSR);
     if(-1 == fd_)
         std::cout << "log file open error\t" << errno << "\t" << strerror(errno) <<  std::endl;
     atexit(DestoryInstance);
@@ -38,7 +38,10 @@ MyLog* MyLog::GetInstance()
 
 void MyLog::DestoryInstance()
 {
-    UpdateBufToDisk();
+    MyLog *my_log = GetInstance();
+    if(nullptr == my_log)
+        return;
+    my_log->UpdateBufToDisk();
     std::cout << "start destory" << std::endl;
     if(nullptr != instance_)
     {
@@ -47,13 +50,21 @@ void MyLog::DestoryInstance()
     }
 }
 
-std::string MyLog::GetLogMsg(char *ptr,int error_num)
+bool  MyLog::UpdateLogMsg(char *ptr,int error_num)
 {
-    std::string str(ptr);
-    str += "\terrno:" + std::to_string(error_num) + "\t" + strerror(error_num) + "\n";
-    return str;
+    MyLog *my_log = GetInstance();
+    if(nullptr == my_log)
+    {
+        std::cout << "log file ptr is null" << std::endl;
+        return false;
+    }
+    log_buf_  += "errno:" + std::to_string(error_num) + "      " + std::string(ptr) + "\n";
+    if(log_buf_.size() > 100)
+        my_log->UpdateBufToDisk();
+    return true;
 }
-bool MyLog::WriteLogToBuf(char *ptr,int error_num)
+
+bool MyLog::WriteLog(char *ptr,int error_num)
 {
     MyLog *my_log = GetInstance();
     if(nullptr == my_log)
@@ -66,62 +77,49 @@ bool MyLog::WriteLogToBuf(char *ptr,int error_num)
         std::cout << "log msg is null,please check" << std::endl;
         return false;
     }
-    std::string log_msg = GetLogMsg(ptr,error_num);
-    log_buf_ +=log_msg;
+    my_log->UpdateLogMsg(ptr,error_num);
 
-    if(log_buf_.size() > 100)
-    {
-        //std::cout << "start write disk" << std::endl;
-        my_log->UpdateBufToDisk();
-        log_buf_.clear();
-      //  std::cout << log_buf_.size() << std::endl;
-    }
     return true;
 }
 
 bool MyLog::UpdateBufToDisk()
 {
-    MyLog *my_log = GetInstance();
-    if(nullptr == my_log)
-    {
-        std::cout << "log file ptr is null" << std::endl;
-        return false;
-    }
-    int rec = write(my_log->fd(),log_buf_.c_str(),strlen(log_buf_.c_str()));
+    int rec = write(fd_,log_buf_.c_str(),strlen(log_buf_.c_str()));
     if(rec != strlen(log_buf_.c_str()))
     {
         std::cout << "write log_buf to disk error" << std::endl;
         return false;
     }
+    log_buf_.clear();
     return true;
 }
 
-bool MyLog::WriteLogToDisk(char *ptr,int error_num)
-{
-
-    MyLog * my_log = MyLog::GetInstance();
-    if(nullptr == my_log)
-    {
-        std::cout << "log ptr is null" << std::endl;
-        return false;
-    }
-    if(nullptr == ptr)
-    {
-        std::cout << "log msg is null,please check" << std::endl;
-        return false;
-    }
-    if(-1 == my_log->fd())
-    {
-        std::cout << "log file fd is -1,please check" << std::endl;
-    }
-    
-    std::string log_msg = GetLogMsg(ptr,errno);
-    int rec = write(my_log->fd(),log_msg.c_str(),strlen(log_msg.c_str()));
-    if(rec != strlen(log_msg.c_str()))
-    {
-        std::cout << "write error" << std::endl;
-        return false;
-    }
-    return true;
-}
+//bool MyLog::WriteLogToDisk(char *ptr,int error_num)
+//{
+//
+//    MyLog * my_log = MyLog::GetInstance();
+//    if(nullptr == my_log)
+//    {
+//        std::cout << "log ptr is null" << std::endl;
+//        return false;
+//    }
+//    if(nullptr == ptr)
+//    {
+//        std::cout << "log msg is null,please check" << std::endl;
+//        return false;
+//    }
+//    if(-1 == my_log->fd())
+//    {
+//        std::cout << "log file fd is -1,please check" << std::endl;
+//    }
+//    
+//    std::string log_msg = GetLogMsg(ptr,errno);
+//    int rec = write(my_log->fd(),log_msg.c_str(),strlen(log_msg.c_str()));
+//    if(rec != strlen(log_msg.c_str()))
+//    {
+//        std::cout << "write error" << std::endl;
+//        return false;
+//    }
+//    return true;
+//}
 
