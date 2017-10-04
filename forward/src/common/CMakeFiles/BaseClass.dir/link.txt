@@ -1,0 +1,2 @@
+/usr/bin/ar qc libBaseClass.a  CMakeFiles/BaseClass.dir/tcp_server_agent.cpp.o CMakeFiles/BaseClass.dir/tcp_socket.cpp.o CMakeFiles/BaseClass.dir/tcp_socket_addr.cpp.o CMakeFiles/BaseClass.dir/tcp_listen_agent.cpp.o CMakeFiles/BaseClass.dir/writer.cpp.o CMakeFiles/BaseClass.dir/agent_manager.cpp.o CMakeFiles/BaseClass.dir/epoll_event.cpp.o CMakeFiles/BaseClass.dir/epoll.cpp.o CMakeFiles/BaseClass.dir/tcp_client_agent.cpp.o CMakeFiles/BaseClass.dir/reader.cpp.o CMakeFiles/BaseClass.dir/agent.cpp.o
+/usr/bin/ranlib libBaseClass.a

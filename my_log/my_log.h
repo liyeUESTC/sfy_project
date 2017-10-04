@@ -8,6 +8,8 @@
 #ifndef MY_LOG_H_
 #define MY_LOG_H_
 
+#include <string>
+
 class MyLog
 {
 private:
@@ -16,16 +18,16 @@ private:
     MyLog & operator=(const MyLog &my_log);
     ~MyLog() {};
     static MyLog *instance_;
-    static std::string log_buf_;
+    std::string log_buf_;
     int fd_;
     static MyLog *GetInstance();
     static void DestoryInstance();
-    static bool UpdateBufToDisk();
-    static std::string GetLogMsg(char *ptr,int error_num);
+    bool UpdateBufToDisk();
+    bool UpdateLogMsg(char *ptr,int error_num);
 public:
-    static bool WriteLogToBuf(char *ptr,int error_num);
-    static bool WriteLogToDisk(char *ptr,int error_num);
-    int fd() { return fd_;};
-    std::string log_buf() { return log_buf_;};
+    static bool WriteLog(char *ptr,int error_num);
+//    static bool WriteLogToDisk(char *ptr,int error_num);
+//    int fd() { return fd_;};
+//    std::string log_buf() { return log_buf_;};
 };
 #endif

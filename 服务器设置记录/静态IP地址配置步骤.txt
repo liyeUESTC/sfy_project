@@ -1,0 +1,23 @@
+静态IP地址配置步骤：
+1.命令：ifconfig查看在使用那个网口（有IP地址的那个）
+2.命令：sudo vim /etc/network/interface
+3.添加：
+	auto X #X为第一步查看的网口名称
+	iface X inet static
+	address 192.168.3.y  #y为你需要配的IP地址
+	netmask 255.255.255.0
+	network 192.168.3.0
+	gateway 192.168.3.1  #网关
+4.命令: sudo vim /etc/resolvconf/resolv.conf.d/base
+5.添加：
+	nameserver 192.168.3.1   #网关作为DNS服务器
+	nameserver 114.114.114.114   #国内的一个DNS服务器
+6.命令：sudo /etc/init.d/networking restart   #似乎无效 也许不用这步  没试过
+7.命令：sudo reboot    #重启机器
+8.命令：ifconfig    
+ 查看IP地址是否是自己需要的
+9.命令：sudo apt-get install  openssh-server
+安装远程连接服务器端
+10.命令：sudo service ssh start
+开启远程连接
+11.远程连接软件连接服务器 看看是否成功
