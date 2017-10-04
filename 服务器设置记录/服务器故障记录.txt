@@ -1,0 +1,1 @@
+1.2017.10.4     改环境变量  导致远程登录不上 可能是/etc/profile  /root/.bashfile  ~/.bashrc几个文件的问题

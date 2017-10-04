@@ -1,0 +1,35 @@
+1.#include"headfile.h" 
+gcc编译指令：-I后接头文件目录 -l后接库名  -L后接库文件路径
+搜索顺序：
+1.当前目录
+2.-I指定目录
+3.环境变量（c++即CPLUS_INCLUDE_PATH，c即C_INCLUDE_PATH）
+4.gcc/g++默认目录：
+/usr/include
+/usr/local/include
+/usr/lib/gcc/x86_64-linux-gnu/版本/include
+
+2.#include<headfile>  
+1.-I指定目录
+2.环境变量CPLUS_INCLUDE_PATH
+3.gcc/g++默认目录：
+/usr/include
+/usr/local/include
+/usr/lib/gcc/x86_64-linux-gnu/版本/include
+
+3.库文件编译时
+①.-L指定目录
+②.环境变量LIBRARY_PATH
+③.默认目录：
+/lib
+/usr/lib
+/usr/local/lib
+
+4.程序运行时动态库的搜索路径
+①.编译时-Wl:rpath指定 多个路径时，用冒号隔开
+②.环境变量LD_LIBRARY_PATH指定 路径之间用冒号隔开
+③.配置文件/etc/ld.so.conf指定
+④.默认路径
+/lib
+/usr/lib
+
