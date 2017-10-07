@@ -1,6 +1,6 @@
 1.在/etc/profile下添加 这会使所有普通用户生效 例如
-export LD_LIBRARY_PATH=/usr/local/lib  多个之间用冒号隔开
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH  多个之间用冒号隔开
 2.source /etc/profile  使之生效
 3.在/root/.bashrc下添加 这会使root用户生效 例如
-export LD_LIBRARY_PATH=/usr/local/lib  多个之间用冒号隔开
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH  多个之间用冒号隔开
 4.source /root/.bashrc
