@@ -1,0 +1,15 @@
+1.先安装依赖包
+sudo apt-get install python-dev
+sudo apt-get install python-pip
+sudo pip install Numpy 
+sudo pip install Cython
+sudo pip install Six
+sudo apt-get install libblas-dev //Scipy编译需要
+sudo apt-get install liblapack-dev //Scipy编译需要
+sudo apt-get install gfortran //Scipy编译需要
+sudo pip install Scipy
+sudo pip install Matplotlib
+sudo pip install NetworkX
+sudo pip install Pillow
+sudo pip install dask[array]
+sudo pip install scikit-image
