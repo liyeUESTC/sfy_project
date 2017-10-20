@@ -1,0 +1,7 @@
+1.基本方法
+lst = [1, 2, 3, 4, 5]
+2.初始化连续数字
+lst = [n for n in range(5, 10)]
+3.初始化n个相同值（两种方式）
+lst = ['x' for n in range(5)]
+lst = ['z']*5
