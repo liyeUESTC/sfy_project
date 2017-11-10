@@ -17,9 +17,9 @@ class LinkedList
 {
 public:
 	LinkedList() :header_node_(nullptr), end_node_(nullptr), list_size_(0) {};
-	LinkedList(int list_size, const T& t = T);
+	LinkedList(int list_size, const T& t);
 	~LinkedList();
-	bool Empty() const { return header_node == nullptr; }
+	bool Empty() const { return (header_node_ == nullptr); }
 	int Size() const { return list_size_; }
 	void SetSize(int size);
 	T& Get(int index) const;
@@ -36,7 +36,7 @@ private:
 };
 
 template <typename T>
-LinkedList<T>::LinkedList(int list_size,const T&t = T)
+LinkedList<T>::LinkedList(int list_size,const T&t)
 {
 	list_size_ = list_size;
 	LinkedListNode<T> *temp_node;
@@ -44,7 +44,7 @@ LinkedList<T>::LinkedList(int list_size,const T&t = T)
 	{
 		LinkedListNode<T>* linked_list_node = new LinkedListNode<T>(t);
 		if (0 == i)
-			header_node = linked_list_node;
+			header_node_ = linked_list_node;
 		else
 			temp_node->next_node = linked_list_node;
 		temp_node = linked_list_node;
@@ -79,7 +79,7 @@ T& LinkedList<T>::Get(int index) const
 template <typename T>
 void LinkedList<T>::Set(int index, const T& t)
 {
-	LinkedListNode *linked_list_node = header_node_;
+	LinkedListNode<T> *linked_list_node = header_node_;
 	for (int i = 0; i < index; ++i)
 	{
 		linked_list_node = linked_list_node->next_node;
@@ -148,7 +148,7 @@ void LinkedList<T>::Insert(int index, const T& t)
 	}
 	else
 	{
-		LinkedListNode *temp_node = header_node_;
+		LinkedListNode<T> *temp_node = header_node_;
 		for (int i = 0; i < index - 1; ++i)
 		{
 			temp_node = temp_node->next_node;
