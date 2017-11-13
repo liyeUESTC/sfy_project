@@ -13,6 +13,7 @@
 #include <unistd.h>
 
 #include "critical_area.h"
+#include "mutex.h"
 
 template<typename T>
 class ThreadMessageQueue
@@ -22,12 +23,13 @@ public:
     ReturnStatus GetMessage(T *&message,bool is_wait);
 private:
     MyQueue<T *> message_queue_;
+    Mutex mutex_;
 };
 
 template<typename T>
 ReturnStatus ThreadMessageQueue<T>::PostMessage(T *message)
 {
-    CriticalArea critical_area;
+    CriticalArea critical_area(&mutex_);
     message_queue_.Push(message);
 }
 
@@ -37,7 +39,7 @@ ReturnStatus ThreadMessageQueue<T>::GetMessage(T *&message,bool is_wait)
     while(1)
     {
         {
-            CriticalArea critical_area;
+            CriticalArea critical_area(&mutex_);
             if(message_queue_.Empty() && !is_wait)
                 return ReturnStatus(-1,0);
             else if(!message_queue_.Empty())

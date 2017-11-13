@@ -14,11 +14,11 @@
 class CriticalArea
 {
 public:
-    CriticalArea();
+    CriticalArea(Mutex *mutex);
     ~CriticalArea();
     CriticalArea(const CriticalArea &) = delete;
     CriticalArea &operator=(const CriticalArea &) = delete;
 private:
-    Mutex mutex_;
+    Mutex *mutex_;
 };
 #endif

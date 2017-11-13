@@ -10,9 +10,12 @@
 
 #include <iostream>
 
-CriticalArea::CriticalArea()
+#include "return_status.h"
+
+CriticalArea::CriticalArea(Mutex *mutex)
 {
-    ReturnStatus rec = mutex_.Lock();
+    mutex_ = mutex;
+    ReturnStatus rec = mutex_->Lock();
     if(-1 == rec.return_value())
     {
         std::cout << "CriticalArea structure function error" << std::endl;
@@ -22,7 +25,7 @@ CriticalArea::CriticalArea()
 
 CriticalArea::~CriticalArea()
 {
-    ReturnStatus rec = mutex_.Unlock();
+    ReturnStatus rec = mutex_->Unlock();
     if(-1 == rec.return_value())
     {
         std::cout << "CriticalArea destructure function error" << std::endl;

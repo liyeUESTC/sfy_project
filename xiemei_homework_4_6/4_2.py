@@ -40,10 +40,6 @@ def RGB2HSI(r,g,b):
     h = 255*h/2*PI
     s = 255*s
     i = 255*i
-#    print "next"
-#    print h
-#    print s
-#    print i
     return [h,s,i]
 
 src_img = cv2.imread('三原色.bmp')
@@ -61,20 +57,10 @@ for i in range(0,x):
         dst_img[i,j,0] = k[0]
         dst_img[i,j,1] = k[1]
         dst_img[i,j,2] = k[2]
-
-        #dst_img[i,j] = RGB2HSI(r,g,b)
-
-#plt.subplot(2,1,1)
-#plt.imshow(src_img_array)
-#plt.axis("off")
-#plt.subplot(2,1,2)
-#plt.imshow(dst_img_array,cmap=cm.hsv)
-#plt.axis("off")
-#plt.show()
-
-#cv2.cvtcolor(src_img,dst_img,
 cv2.imshow("rgb",src_img)
 cv2.imshow("hsi",dst_img)
+cv2.imwrite("hsi.bmp",dst_img)
+
 key = cv2.waitKey(0)
 if('q' == key):
     cv2.destoryAllWindows()

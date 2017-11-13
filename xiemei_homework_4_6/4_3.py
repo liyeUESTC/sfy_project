@@ -46,6 +46,7 @@ for i in range(0,x):
 
 cv2.imshow("gray",src_img)
 cv2.imshow("rgb",dst_img)
+cv2.imwrite("rgb.bmp",dst_img)
 k = cv2.waitKey(0)
 if('q' == k):
    cv2.destoryAllWindow() 
