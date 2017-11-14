@@ -9,7 +9,7 @@
 #ifndef TASK_MANAGERMENT_H_
 #define TASK_MANAGERMENT_H_
 
-#include <vector>
+#include <map>
 
 #include "task.h"
 #include "singleton.h"
@@ -19,25 +19,26 @@ class TaskManagerment:public Singleton<TaskManagerment>
 public:
     friend class Singleton;
     int CreateTaskID();
+    Task *GetTask(int task_ID);
     template<typename T>
-    int CreatTask();
+    Task *CreatTask();
     bool DestoryTask(int task_ID);
     void DestoryAllTask();
 private:
     TaskManagerment();
     TaskManagerment(const TaskManagerment &) = delete;
     TaskManagerment &operator=(const TaskManagerment &) = delete;
-    std::vector<Task *> task_vec_;
+    std::map<int,Task *> task_map_;
     int task_id_max_;
 };
 
 template<typename T>
-int TaskManagerment::CreatTask()
+Task *TaskManagerment::CreatTask()
 {
     T *task_ptr = new T;
     int task_ID = CreateTaskID();
     task_ptr->SetID(task_ID);
-    task_vec_.push_back(task_ptr);
-    return task_ID;
+    task_map_.insert(std::pair<int,Task *>(task_ID,task_ptr));
+    return task_ptr;
 }
 #endif

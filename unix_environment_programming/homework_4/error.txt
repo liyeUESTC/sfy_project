@@ -1,0 +1,279 @@
+g++ *.cpp -o test -std=c++11 -pthread
+In file included from task_managerment.cpp:8:0:
+task_managerment.h:17:7: error: deleted function ‘virtual TaskManagerment::~TaskManagerment()’
+ class TaskManagerment:public Singleton<TaskManagerment>
+       ^
+In file included from task_managerment.h:15:0,
+                 from task_managerment.cpp:8:
+singleton.h:23:13: error: overriding non-deleted function ‘Singleton<T>::~Singleton() [with T = TaskManagerment]’
+     virtual ~Singleton();
+             ^
+In file included from task_managerment.cpp:8:0:
+task_managerment.h:17:7: note: ‘virtual TaskManagerment::~TaskManagerment()’ is implicitly deleted because the default definition would be ill-formed:
+ class TaskManagerment:public Singleton<TaskManagerment>
+       ^
+In file included from task_managerment.h:15:0,
+                 from task_managerment.cpp:8:
+singleton.h:23:13: error: ‘Singleton<T>::~Singleton() [with T = TaskManagerment]’ is private
+     virtual ~Singleton();
+             ^
+In file included from task_managerment.cpp:8:0:
+task_managerment.h:17:7: error: within this context
+ class TaskManagerment:public Singleton<TaskManagerment>
+       ^
+In file included from task_managerment.h:15:0,
+                 from task_managerment.cpp:8:
+singleton.h: In constructor ‘TaskManagerment::TaskManagerment()’:
+singleton.h:22:5: error: ‘Singleton<T>::Singleton() [with T = TaskManagerment]’ is private
+     Singleton();
+     ^
+task_managerment.cpp:9:34: error: within this context
+ TaskManagerment::TaskManagerment()
+                                  ^
+In file included from task_managerment.h:15:0,
+                 from task_managerment.cpp:8:
+singleton.h:23:13: error: ‘Singleton<T>::~Singleton() [with T = TaskManagerment]’ is private
+     virtual ~Singleton();
+             ^
+task_managerment.cpp:9:34: error: within this context
+ TaskManagerment::TaskManagerment()
+                                  ^
+task_managerment.cpp: In member function ‘bool TaskManagerment::DestoryTask(int)’:
+task_managerment.cpp:23:30: error: base operand of ‘->’ has non-pointer type ‘std::pair<const int, Task*>’
+         if(task_ID == (*iter)->first)
+                              ^
+task_managerment.cpp:25:27: error: base operand of ‘->’ has non-pointer type ‘std::pair<const int, Task*>’
+             delete (*iter)->second;
+                           ^
+task_managerment.cpp:26:20: error: base operand of ‘->’ has non-pointer type ‘std::pair<const int, Task*>’
+             (*iter)->first = -1;
+                    ^
+task_managerment.cpp:27:20: error: base operand of ‘->’ has non-pointer type ‘std::pair<const int, Task*>’
+             (*iter)->second = nullptr;
+                    ^
+task_managerment.cpp: In member function ‘void TaskManagerment::DestoryAllTask()’:
+task_managerment.cpp:38:19: error: base operand of ‘->’ has non-pointer type ‘std::pair<const int, Task*>’
+         if((*iter)->second != nullptr)
+                   ^
+task_managerment.cpp:40:27: error: base operand of ‘->’ has non-pointer type ‘std::pair<const int, Task*>’
+             delete (*iter)->second;
+                           ^
+task_managerment.cpp:43:1: error: expected ‘}’ at end of input
+ }
+ ^
+In file included from test.cpp:12:0:
+task_managerment.h:17:7: error: deleted function ‘virtual TaskManagerment::~TaskManagerment()’
+ class TaskManagerment:public Singleton<TaskManagerment>
+       ^
+In file included from task_managerment.h:15:0,
+                 from test.cpp:12:
+singleton.h:23:13: error: overriding non-deleted function ‘Singleton<T>::~Singleton() [with T = TaskManagerment]’
+     virtual ~Singleton();
+             ^
+In file included from test.cpp:12:0:
+task_managerment.h:17:7: note: ‘virtual TaskManagerment::~TaskManagerment()’ is implicitly deleted because the default definition would be ill-formed:
+ class TaskManagerment:public Singleton<TaskManagerment>
+       ^
+In file included from task_managerment.h:15:0,
+                 from test.cpp:12:
+singleton.h:23:13: error: ‘Singleton<T>::~Singleton() [with T = TaskManagerment]’ is private
+     virtual ~Singleton();
+             ^
+In file included from test.cpp:12:0:
+task_managerment.h:17:7: error: within this context
+ class TaskManagerment:public Singleton<TaskManagerment>
+       ^
+In file included from test.cpp:13:0:
+thread_pool_managerment.h:19:7: error: deleted function ‘virtual ThreadPoolManagerment::~ThreadPoolManagerment()’
+ class ThreadPoolManagerment:public Singleton<ThreadPoolManagerment>
+       ^
+In file included from task_managerment.h:15:0,
+                 from test.cpp:12:
+singleton.h:23:13: error: overriding non-deleted function ‘Singleton<T>::~Singleton() [with T = ThreadPoolManagerment]’
+     virtual ~Singleton();
+             ^
+In file included from test.cpp:13:0:
+thread_pool_managerment.h:19:7: note: ‘virtual ThreadPoolManagerment::~ThreadPoolManagerment()’ is implicitly deleted because the default definition would be ill-formed:
+ class ThreadPoolManagerment:public Singleton<ThreadPoolManagerment>
+       ^
+In file included from task_managerment.h:15:0,
+                 from test.cpp:12:
+singleton.h:23:13: error: ‘Singleton<T>::~Singleton() [with T = ThreadPoolManagerment]’ is private
+     virtual ~Singleton();
+             ^
+In file included from test.cpp:13:0:
+thread_pool_managerment.h:19:7: error: within this context
+ class ThreadPoolManagerment:public Singleton<ThreadPoolManagerment>
+       ^
+test.cpp: In function ‘void PrintResult()’:
+test.cpp:48:32: error: ‘task_ID_’ was not declared in this scope
+     std::cout << "task ID:" << task_ID_ 
+                                ^
+test.cpp:49:33: error: ‘result_’ was not declared in this scope
+               << "  result:" << result_ 
+                                 ^
+test.cpp: In function ‘int main(int, char**)’:
+test.cpp:56:50: error: ‘class TaskManagerment’ has no member named ‘CreateTask’
+     Task *task = TaskManagerment::GetInstance()->CreateTask<AddTask>();
+                                                  ^
+test.cpp:56:68: error: expected primary-expression before ‘>’ token
+     Task *task = TaskManagerment::GetInstance()->CreateTask<AddTask>();
+                                                                    ^
+test.cpp:56:70: error: expected primary-expression before ‘)’ token
+     Task *task = TaskManagerment::GetInstance()->CreateTask<AddTask>();
+                                                                      ^
+test.cpp:57:11: error: ‘class Task’ has no member named ‘SetAddNum’
+     task->SetAddNum(5,6);
+           ^
+test.cpp:59:11: error: redeclaration of ‘Task* task’
+     Task *task = ThreadPoolManagerment::GetInstance()->GetTask();
+           ^
+test.cpp:56:11: error: ‘Task* task’ previously declared here
+     Task *task = TaskManagerment::GetInstance()->CreateTask<AddTask>();
+           ^
+test.cpp:60:11: error: ‘class Task’ has no member named ‘PrintResult’
+     task->PrintResult();
+           ^
+test.cpp:63:43: error: ‘class ThreadPoolManagerment’ has no member named ‘Destory’
+     ThreadPoolManagerment::GetInstance()->Destory();
+                                           ^
+test.cpp:65:37: error: ‘class TaskManagerment’ has no member named ‘Destory’
+     TaskManagerment::GetInstance()->Destory();
+                                     ^
+In file included from task_managerment.h:15:0,
+                 from test.cpp:12:
+singleton.h: In instantiation of ‘Mutex Singleton<ThreadPoolManagerment>::mutex_’:
+singleton.h:40:43:   required from ‘static T* Singleton<T>::GetInstance() [with T = ThreadPoolManagerment]’
+test.cpp:55:28:   required from here
+singleton.h:33:7: error: use of deleted function ‘Mutex::Mutex(const Mutex&)’
+ Mutex Singleton<T>::mutex_ = Mutex();
+       ^
+In file included from singleton.h:12:0,
+                 from task_managerment.h:15,
+                 from test.cpp:12:
+mutex.h:25:5: error: declared here
+     Mutex(const Mutex &) = delete;
+     ^
+In file included from task_managerment.h:15:0,
+                 from test.cpp:12:
+singleton.h: In instantiation of ‘static T* Singleton<T>::GetInstance() [with T = ThreadPoolManagerment]’:
+test.cpp:55:28:   required from here
+singleton.h:43:23: error: no matching function for call to ‘ThreadPoolManagerment::ThreadPoolManagerment()’
+             instance_ = new T;
+                       ^
+singleton.h:43:23: note: candidate is:
+In file included from test.cpp:13:0:
+thread_pool_managerment.h:30:5: note: ThreadPoolManagerment::ThreadPoolManagerment(int)
+     ThreadPoolManagerment(int thread_num);
+     ^
+thread_pool_managerment.h:30:5: note:   candidate expects 1 argument, 0 provided
+In file included from task_managerment.h:15:0,
+                 from test.cpp:12:
+singleton.h: In instantiation of ‘Mutex Singleton<TaskManagerment>::mutex_’:
+singleton.h:40:43:   required from ‘static T* Singleton<T>::GetInstance() [with T = TaskManagerment]’
+test.cpp:56:35:   required from here
+singleton.h:33:7: error: use of deleted function ‘Mutex::Mutex(const Mutex&)’
+ Mutex Singleton<T>::mutex_ = Mutex();
+       ^
+In file included from singleton.h:12:0,
+                 from task_managerment.h:15,
+                 from test.cpp:12:
+mutex.h:25:5: error: declared here
+     Mutex(const Mutex &) = delete;
+     ^
+thread.cpp:9:1: error: ‘Thread’ does not name a type
+ Thread::Thread()
+ ^
+thread.cpp:16:1: error: ‘ReturnStatus’ does not name a type
+ ReturnStatus Thread::Run()
+ ^
+thread.cpp:38:6: error: ‘Thread’ has not been declared
+ void Thread::ReceiveTask(Task *task)
+      ^
+thread.cpp:38:26: error: variable or field ‘ReceiveTask’ declared void
+ void Thread::ReceiveTask(Task *task)
+                          ^
+thread.cpp:38:26: error: ‘Task’ was not declared in this scope
+thread.cpp:38:32: error: ‘task’ was not declared in this scope
+ void Thread::ReceiveTask(Task *task)
+                                ^
+thread.cpp: In function ‘void* StartFunctionOfThread(void*)’:
+thread.cpp:45:12: error: ‘void*’ is not a pointer-to-object type
+     while(p->is_exit_ == false)
+            ^
+thread.cpp:47:9: error: ‘Task’ was not declared in this scope
+         Task *task;
+         ^
+thread.cpp:47:15: error: ‘task’ was not declared in this scope
+         Task *task;
+               ^
+thread.cpp:48:9: error: ‘ReturnStatus’ was not declared in this scope
+         ReturnStatus return_status = (p->message_).GetMessage(task,true);
+         ^
+thread.cpp:48:22: error: expected ‘;’ before ‘return_status’
+         ReturnStatus return_status = (p->message_).GetMessage(task,true);
+                      ^
+thread.cpp:49:18: error: ‘return_status’ was not declared in this scope
+         if(-1 == return_status.return_value())
+                  ^
+thread.cpp:51:13: error: ‘cout’ is not a member of ‘std’
+             std::cout << "GetMessage error" << std::endl;
+             ^
+thread.cpp:51:48: error: ‘endl’ is not a member of ‘std’
+             std::cout << "GetMessage error" << std::endl;
+                                                ^
+thread.cpp:55:9: error: ‘ThreadPoolManagerment’ has not been declared
+         ThreadPoolManagerment::GetInstance()->RecycleTask(task);
+         ^
+thread.cpp: At global scope:
+thread.cpp:59:6: error: ‘Thread’ has not been declared
+ void Thread::Stop()
+      ^
+thread.cpp: In function ‘void Stop()’:
+thread.cpp:61:5: error: ‘is_exit_’ was not declared in this scope
+     is_exit_ = true;
+     ^
+In file included from thread_pool_managerment.cpp:9:0:
+thread_pool_managerment.h:19:7: error: deleted function ‘virtual ThreadPoolManagerment::~ThreadPoolManagerment()’
+ class ThreadPoolManagerment:public Singleton<ThreadPoolManagerment>
+       ^
+In file included from thread_pool_managerment.h:16:0,
+                 from thread_pool_managerment.cpp:9:
+singleton.h:23:13: error: overriding non-deleted function ‘Singleton<T>::~Singleton() [with T = ThreadPoolManagerment]’
+     virtual ~Singleton();
+             ^
+In file included from thread_pool_managerment.cpp:9:0:
+thread_pool_managerment.h:19:7: note: ‘virtual ThreadPoolManagerment::~ThreadPoolManagerment()’ is implicitly deleted because the default definition would be ill-formed:
+ class ThreadPoolManagerment:public Singleton<ThreadPoolManagerment>
+       ^
+In file included from thread_pool_managerment.h:16:0,
+                 from thread_pool_managerment.cpp:9:
+singleton.h:23:13: error: ‘Singleton<T>::~Singleton() [with T = ThreadPoolManagerment]’ is private
+     virtual ~Singleton();
+             ^
+In file included from thread_pool_managerment.cpp:9:0:
+thread_pool_managerment.h:19:7: error: within this context
+ class ThreadPoolManagerment:public Singleton<ThreadPoolManagerment>
+       ^
+In file included from thread_pool_managerment.h:16:0,
+                 from thread_pool_managerment.cpp:9:
+singleton.h: In constructor ‘ThreadPoolManagerment::ThreadPoolManagerment(int)’:
+singleton.h:22:5: error: ‘Singleton<T>::Singleton() [with T = ThreadPoolManagerment]’ is private
+     Singleton();
+     ^
+thread_pool_managerment.cpp:11:60: error: within this context
+ ThreadPoolManagerment::ThreadPoolManagerment(int thread_num)
+                                                            ^
+In file included from thread_pool_managerment.h:16:0,
+                 from thread_pool_managerment.cpp:9:
+singleton.h:23:13: error: ‘Singleton<T>::~Singleton() [with T = ThreadPoolManagerment]’ is private
+     virtual ~Singleton();
+             ^
+thread_pool_managerment.cpp:11:60: error: within this context
+ ThreadPoolManagerment::ThreadPoolManagerment(int thread_num)
+                                                            ^
+thread_pool_managerment.cpp: In member function ‘Task* ThreadPoolManagerment::GetTask()’:
+thread_pool_managerment.cpp:50:38: error: ‘((ThreadPoolManagerment*)this)->ThreadPoolManagerment::completed_task_queue_.ThreadMessageQueue<T>::PostMessage<Task>’ does not have class type
+     completed_task_queue_.PostMessage.GetMessage(task,true);
+                                      ^
+make: *** [test] Error 1

@@ -24,11 +24,16 @@ private:
     Singleton(const Singleton &) = delete;
     Singleton &operator=(const Singleton &) = delete;
     static T *instance_;
-    Mutex mutex_;
+    static Mutex mutex_;
 };
 
 template<typename T>
-static T * Singleton::GetInstance()
+T *Singleton<T>::instance_ = nullptr;
+template<typename T>
+Mutex Singleton<T>::mutex_ = Mutex();
+
+template<typename T>
+T * Singleton<T>::GetInstance()
 {
     if(nullptr == instance_)
     {
@@ -38,9 +43,11 @@ static T * Singleton::GetInstance()
             instance_ = new T;
         }
     }
+    return instance_;
 }
 
-void Singleton::DestoryInstance()
+template<typename T>
+void Singleton<T>::DestoryInstance()
 {
     if(nullptr != instance_)
         delete instance_;

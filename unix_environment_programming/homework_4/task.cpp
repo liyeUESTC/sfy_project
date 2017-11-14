@@ -11,7 +11,7 @@
 Task::Task()
 {
     task_ID_ = 0;
-    result_ = nullptr;
+    //result_ = nullptr;
 }
 
 int Task::task_ID()

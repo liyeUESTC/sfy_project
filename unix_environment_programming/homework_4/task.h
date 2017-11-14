@@ -9,7 +9,7 @@
 #ifndef TASK_H_
 #define TASK_H_
 
-#include "task_managerment.h";
+//#include "task_managerment.h"
 
 class Task
 {
@@ -21,7 +21,6 @@ public:
     int task_ID();
 protected:
     int task_ID_;
-    void *result_;
 private:
     void SetID(int task_ID);
 };

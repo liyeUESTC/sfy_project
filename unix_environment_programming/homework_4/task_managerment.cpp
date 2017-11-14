@@ -5,7 +5,7 @@
 	> Created Time: 2017年11月13日 星期一 21时24分37秒
     > Function: 
  ************************************************************************/
-
+#include "task_managerment.h"
 TaskManagerment::TaskManagerment()
 {
     task_id_max_ = 0;
@@ -18,12 +18,13 @@ int TaskManagerment::CreateTaskID()
 
 bool TaskManagerment::DestoryTask(int task_ID)
 {
-    for(auto iter = task_vec_.begin();iter != task_vec_.end();++iter)
+    for(auto iter = task_map_.begin();iter != task_map_.end();++iter)
     {
-        if(task_ID == (*iter)->task_ID())
+        if(task_ID == (*iter)->first)
         {
-            delete *iter;
-            *iter = nullptr;
+            delete (*iter)->second;
+            (*iter)->first = -1;
+            (*iter)->second = nullptr;
             return true;
         }
     }
@@ -32,11 +33,11 @@ bool TaskManagerment::DestoryTask(int task_ID)
 
 void TaskManagerment::DestoryAllTask()
 {
-    for(auto iter = task_vec_.begin();iter != task_vec_.end();++iter)
+    for(auto iter = task_map_.begin();iter != task_map_.end();++iter)
     {
-        if(*iter != nullptr)
+        if((*iter)->second != nullptr)
         {
-            delete *iter;
+            delete (*iter)->second;
     }
-    task_vec_.clear();
+    task_map_.clear();
 }
