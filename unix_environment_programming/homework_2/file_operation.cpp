@@ -16,8 +16,8 @@
 
 #include "return_status.h"
 
-const int kWriteCacheSize = 5;
-const int kReadCacheSize = 10;
+const int kWriteCacheSize = 4096;
+const int kReadCacheSize = 4096;
 
 FileOperation::FileOperation(const char *file_name,int flags,mode_t mode)
 {
@@ -137,6 +137,9 @@ ReturnStatus FileOperation::Read(char *buf_ptr,int read_size,off_t offset,
 
     }
     //将剩余字节拷贝到用户缓存
+    ReturnStatus return_status = FlushRead();
+    if(-1 == return_status.return_value())
+        return return_status;
     memcpy(buf_ptr+temp_size,read_cache_,read_size);
     read_cache_size_ -= (read_size-temp_size);
     return ReturnStatus(0,0);
@@ -180,7 +183,7 @@ ReturnStatus FileOperation::FlushRead()
         //读到文件尾
         else if(0 == size)
         {
-            std::cout << "go to there 1" << std::endl; 
+            //std::cout << "go to there 1" << std::endl; 
             return ReturnStatus(0,0);
         }
         else
