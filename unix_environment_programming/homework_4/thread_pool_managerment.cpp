@@ -8,10 +8,19 @@
 
 #include "thread_pool_managerment.h"
 
+ThreadPoolManagerment::ThreadPoolManagerment()
+{
+    allocate_thread_num_ = 0;
+}
 ThreadPoolManagerment::ThreadPoolManagerment(int thread_num)
 {
     thread_num_ = thread_num;
     allocate_thread_num_ = 0;
+}
+
+void ThreadPoolManagerment::SetThreadNum(int thread_num)
+{
+    thread_num_ = thread_num;
 }
 
 ReturnStatus ThreadPoolManagerment::Run()
@@ -47,7 +56,7 @@ ReturnStatus ThreadPoolManagerment::RecycleTask(Task *task)
 Task *ThreadPoolManagerment::GetTask()
 {
     Task *task;
-    completed_task_queue_.PostMessage.GetMessage(task,true);
+    completed_task_queue_.GetMessage(task,true);
     return task;
 }
 
@@ -65,5 +74,9 @@ void ThreadPoolManagerment::StopAllThread()
     thread_vec_.clear();
 }
 
-
+ThreadPoolManagerment::~ThreadPoolManagerment()
+{
+    StopAllThread();
+    DestoryInstance();
+}
 

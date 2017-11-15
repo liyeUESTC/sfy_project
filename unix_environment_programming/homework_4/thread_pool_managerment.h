@@ -20,13 +20,16 @@ class ThreadPoolManagerment:public Singleton<ThreadPoolManagerment>
 {
 public:
     friend Singleton<ThreadPoolManagerment>;
+    void SetThreadNum(int thread_num);
     ReturnStatus Run();
     ReturnStatus PostTask(Task *task);
 //    ReturnStatus AllocateTask(Task *task);
     ReturnStatus RecycleTask(Task *task);
     Task *GetTask();
     void StopAllThread();
+    ~ThreadPoolManagerment();
 private:
+    ThreadPoolManagerment();
     ThreadPoolManagerment(int thread_num);
     ThreadPoolManagerment(const ThreadPoolManagerment &) = delete;
     ThreadPoolManagerment &operator=(const ThreadPoolManagerment &) = delete;

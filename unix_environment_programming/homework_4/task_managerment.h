@@ -17,13 +17,14 @@
 class TaskManagerment:public Singleton<TaskManagerment>
 {
 public:
-    friend class Singleton;
+    friend class Singleton<TaskManagerment>;
     int CreateTaskID();
     Task *GetTask(int task_ID);
     template<typename T>
-    Task *CreatTask();
+    T *CreatTask();
     bool DestoryTask(int task_ID);
     void DestoryAllTask();
+    ~TaskManagerment();
 private:
     TaskManagerment();
     TaskManagerment(const TaskManagerment &) = delete;
@@ -33,7 +34,7 @@ private:
 };
 
 template<typename T>
-Task *TaskManagerment::CreatTask()
+T *TaskManagerment::CreatTask()
 {
     T *task_ptr = new T;
     int task_ID = CreateTaskID();

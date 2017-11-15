@@ -6,6 +6,9 @@
     > Function: 
  ************************************************************************/
 
+#include "thread.h"
+#include "thread_pool_managerment.h"
+
 Thread::Thread()
 {
     thread_ID_ = -1;
@@ -28,7 +31,7 @@ ReturnStatus Thread::Run()
         if(0 != rec)
         {
             std::cout << "pthread_detach error" << std::endl;
-            return ReturnStatus(-1.rec);
+            return ReturnStatus(-1,rec);
         }
     }
     
@@ -40,12 +43,13 @@ void Thread::ReceiveTask(Task *task)
     message_.PostMessage(task);
 }
 
-void *StartFunctionOfThread(void *p)
+void *Thread::StartFunctionOfThread(void *p)
 {
-    while(p->is_exit_ == false)
+    Thread *thread= (Thread *)p;
+    while(thread->is_exit() == false)
     {
         Task *task;
-        ReturnStatus return_status = (p->message_).GetMessage(task,true);
+        ReturnStatus return_status = (thread->message()).GetMessage(task,true);
         if(-1 == return_status.return_value())
         {
             std::cout << "GetMessage error" << std::endl;
@@ -59,4 +63,14 @@ void *StartFunctionOfThread(void *p)
 void Thread::Stop()
 {
     is_exit_ = true;
+}
+
+bool Thread::is_exit()
+{
+    return is_exit_;
+}
+
+ThreadMessageQueue<Task> &Thread::message()
+{
+    return message_;
 }

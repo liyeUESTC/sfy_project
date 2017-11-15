@@ -6,6 +6,7 @@
     > Function: 
  ************************************************************************/
 #include "task_managerment.h"
+
 TaskManagerment::TaskManagerment()
 {
     task_id_max_ = 0;
@@ -20,11 +21,10 @@ bool TaskManagerment::DestoryTask(int task_ID)
 {
     for(auto iter = task_map_.begin();iter != task_map_.end();++iter)
     {
-        if(task_ID == (*iter)->first)
+        if(task_ID == iter->first && nullptr != iter->second)
         {
-            delete (*iter)->second;
-            (*iter)->first = -1;
-            (*iter)->second = nullptr;
+            delete iter->second;
+            iter->second = nullptr;
             return true;
         }
     }
@@ -35,9 +35,14 @@ void TaskManagerment::DestoryAllTask()
 {
     for(auto iter = task_map_.begin();iter != task_map_.end();++iter)
     {
-        if((*iter)->second != nullptr)
-        {
-            delete (*iter)->second;
+        if(iter->second != nullptr)
+            delete iter->second;
     }
     task_map_.clear();
+}
+
+TaskManagerment::~TaskManagerment()
+{
+    DestoryAllTask();
+    DestoryInstance();
 }

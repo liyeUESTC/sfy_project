@@ -18,9 +18,12 @@ class Singleton
 public:
     static T *GetInstance();
     void DestoryInstance();
+protected:
+    Singleton()
+    {};
+    virtual ~Singleton()
+    {};
 private:
-    Singleton();
-    virtual ~Singleton();
     Singleton(const Singleton &) = delete;
     Singleton &operator=(const Singleton &) = delete;
     static T *instance_;
@@ -30,7 +33,7 @@ private:
 template<typename T>
 T *Singleton<T>::instance_ = nullptr;
 template<typename T>
-Mutex Singleton<T>::mutex_ = Mutex();
+Mutex Singleton<T>::mutex_;
 
 template<typename T>
 T * Singleton<T>::GetInstance()

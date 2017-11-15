@@ -22,6 +22,8 @@ public:
     ReturnStatus Run();
     void ReceiveTask(Task *task);
     void Stop();
+    bool is_exit();
+    ThreadMessageQueue<Task> &message();
     Thread(const Thread &) = delete;
     Thread &operator=(const Thread &) = delete;
 private:

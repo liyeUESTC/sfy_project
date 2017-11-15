@@ -14,6 +14,11 @@ Task::Task()
     //result_ = nullptr;
 }
 
+Task::~Task()
+{
+
+}
+
 int Task::task_ID()
 {
     return task_ID_;

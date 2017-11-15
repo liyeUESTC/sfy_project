@@ -16,6 +16,8 @@ class Task
 public:
     friend class TaskManagerment;
     virtual void TaskFunction() = 0;
+    virtual void PrintResult() = 0;
+//    virtual void *GetResult() = 0;
     Task();
     virtual ~Task();
     int task_ID();
