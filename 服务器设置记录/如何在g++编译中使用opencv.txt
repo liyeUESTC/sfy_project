@@ -1,0 +1,12 @@
+linux 使用opencv问题：
+
+opencv有多个运行库和头文件  所以采用了pkg-config
+
+在g++编译时 如果需要opencv 需加上 ‘pkg-config opencv --cflags --libs'
+
+如果在Makefile中，则如下
+
+INCLUDE=$(shell pkg-config opencv --cflags --libs)
+
+target:a.cpp  b.cpp
+	g++ a.cpp b.cpp $(INCLUDE) -o target 

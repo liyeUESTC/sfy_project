@@ -1,0 +1,8 @@
+1.Makefile函数
+  lastword TEXT 
+作用：返回TEXT文本中的最后1个单词。相当于$(word $(words TEXT), TEXT) 
+示例：$(lastword aaa bbb ccc) 结果为 ccc 
+
+  dir FILENAME 
+作用：返回FILENAME文件的目录 
+示例：$(dir core/main.mk) 结果为 core/ 

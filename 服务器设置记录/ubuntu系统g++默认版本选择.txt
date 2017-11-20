@@ -1,0 +1,6 @@
+update-alternatives是ubuntu系统中专门维护系统命令链接符的工具，通过它可以很方便的设置系统默认使用哪个命令、哪个软件版本
+
+以g++为例：
+update-alternatives --display g++ 能看到当前系统g++命令默认使用的是哪一个版本的g++
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 20能让当前系统g++命令改为使用g++-4.8版本（前提是4.8版本存在）
+最后的数字是当前软链接的优先级，在多个软链接指向同一个命令的情况下，系统会选择优先级最高（数字最小）的软链接当做第一选择
