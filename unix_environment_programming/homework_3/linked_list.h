@@ -37,6 +37,7 @@ private:
 	int list_size_;
 };
 
+//链表构造函数 可指定大小和元素内容
 template <typename T>
 LinkedList<T>::LinkedList(int list_size,const T&t)
 {
@@ -56,6 +57,7 @@ LinkedList<T>::LinkedList(int list_size,const T&t)
 	end_node_ = temp_node;
 }
 
+//链表析构函数 删除所有动态申请的内存
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
@@ -67,10 +69,11 @@ LinkedList<T>::~LinkedList()
 	}
 }
 
+//返回给定序号的元素  范围：0到list_size_-1
 template <typename T>
 T LinkedList<T>::Get(int index) const
 {
-    if(0 == index)
+    if(0 == index) 
     {
         return header_node_->data;
     }
@@ -84,6 +87,7 @@ T LinkedList<T>::Get(int index) const
 	return linked_list_node->data;
 }
 
+//设定给定序号的元素值 
 template <typename T>
 void LinkedList<T>::Set(int index, const T& t)
 {
@@ -95,6 +99,7 @@ void LinkedList<T>::Set(int index, const T& t)
 	linked_list_node->data = t;
 }
 
+//查询给定元素的序号
 template <typename T>
 int LinkedList<T>::Index(const T& t) const
 {
@@ -110,6 +115,7 @@ int LinkedList<T>::Index(const T& t) const
 	return list_size_; // index == list_size
 }
 
+//删除指定序号的节点
 template <typename T>
 void LinkedList<T>::Erase(int index)
 {
@@ -141,6 +147,7 @@ void LinkedList<T>::Erase(int index)
 		header_node_ = end_node_ = nullptr;
 }
 
+//在指定序号中插入节点
 template <typename T>
 void LinkedList<T>::Insert(int index, const T& t)
 {
@@ -168,6 +175,7 @@ void LinkedList<T>::Insert(int index, const T& t)
 	}
 }
 
+//在链表尾端添加节点
 template <typename T>
 void LinkedList<T>::PushBack(const T& t)
 {
@@ -188,6 +196,7 @@ void LinkedList<T>::PushBack(const T& t)
     //std::cout << "size:" << list_size_ << std::endl;
 }
 
+//给链表设定大小 如果设定大小大于当前大小 直接返回 
 template <typename T>
 void LinkedList<T>::SetSize(int size)
 {

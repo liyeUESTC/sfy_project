@@ -24,36 +24,42 @@ private:
     LinkedList<T> linked_list_;    
 };
 
+//返回队列是否为空
 template<typename T>
 bool MyQueue<T>::Empty()
 {
     return linked_list_.Empty();
 }
 
+//返回队列大小
 template<typename T>
 int MyQueue<T>::Size()
 {
     return linked_list_.Size();
 }
 
+//返回队首元素
 template<typename T>
 T MyQueue<T>::Front()
 {
     return linked_list_.Get(0);
 }
 
+//返回队尾元素
 template<typename T>
 T MyQueue<T>::Back()
 {
     return linked_list_.Get(linked_list_.Size()-1);
 }
 
+//删除队首元素
 template<typename T>
 void MyQueue<T>::Pop()
 {
     linked_list_.Erase(0);
 }
 
+//在队尾添加元素
 template<typename T>
 void MyQueue<T>::Push(const T &element)
 {

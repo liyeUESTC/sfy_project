@@ -26,26 +26,28 @@ private:
     Mutex mutex_;
 };
 
+//发送消息函数
 template<typename T>
-ReturnStatus ThreadMessageQueue<T>::PostMessage(T *message)
+ReturnStatus ThreadMessageQueue<T>::PostMessage(T *message) 
 {
-    CriticalArea critical_area(&mutex_);
-    message_queue_.Push(message);
+    CriticalArea critical_area(&mutex_); //临界区
+    message_queue_.Push(message);  //在队尾添加
 }
 
+//取消息函数 
 template<typename T>
 ReturnStatus ThreadMessageQueue<T>::GetMessage(T *&message,bool is_wait)
 {
     while(1)
     {
         {
-            CriticalArea critical_area(&mutex_);
-            if(message_queue_.Empty() && !is_wait)
+            CriticalArea critical_area(&mutex_); //临界区
+            if(message_queue_.Empty() && !is_wait)  //如果不等待 且消息队列为空 直接返回
                 return ReturnStatus(-1,0);
-            else if(!message_queue_.Empty())
+            else if(!message_queue_.Empty())  //如果消息队列不为空  取消息
             {
-                message = message_queue_.Front();
-                message_queue_.Pop();
+                message = message_queue_.Front(); //取队首
+                message_queue_.Pop();  //删除队首
                 return ReturnStatus(0,0);
             }
         }
