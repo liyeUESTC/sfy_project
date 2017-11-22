@@ -8,6 +8,8 @@
 
 #include "thread_pool_managerment.h"
 
+#include <iostream>
+
 ThreadPoolManagerment::ThreadPoolManagerment()
 {
     allocate_thread_num_ = 0;
@@ -76,7 +78,7 @@ void ThreadPoolManagerment::StopAllThread()
 
 ThreadPoolManagerment::~ThreadPoolManagerment()
 {
+    std::cout << "destory ThreadPoolManagerment" << std::endl;
     StopAllThread();
-    DestoryInstance();
 }
 

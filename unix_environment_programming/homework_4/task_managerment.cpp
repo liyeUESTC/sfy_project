@@ -7,6 +7,9 @@
  ************************************************************************/
 #include "task_managerment.h"
 
+#include <iostream>
+
+
 TaskManagerment::TaskManagerment()
 {
     task_id_max_ = 0;
@@ -43,6 +46,6 @@ void TaskManagerment::DestoryAllTask()
 
 TaskManagerment::~TaskManagerment()
 {
+    std::cout << "destory TaskManagerment" << std::endl;
     DestoryAllTask();
-    DestoryInstance();
 }

@@ -78,8 +78,8 @@ int main(int argc,char *argv[])
     }
 
 //    ThreadPoolManagerment::GetInstance()->StopAllThread();
-//    ThreadPoolManagerment::GetInstance()->Destory();
+    ThreadPoolManagerment::GetInstance()->DestoryInstance();
 //    TaskManagerment::GetInstance()->DestoryAllTask();
-//    TaskManagerment::GetInstance()->Destory();
+    TaskManagerment::GetInstance()->DestoryInstance();
     return 0;
 }
