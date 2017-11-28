@@ -1,0 +1,51 @@
+依赖安装：NVIDIA显卡驱动 CUDA  cudnn
+
+1.依赖项
+sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler 
+sudo apt-get install --no-install-recommends libboost-all-dev
+sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev
+sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
+sudo apt-get install libatlas-base-dev
+
+2.获取caffe源码
+git clone https://github.com/BVLC/caffe.git
+
+3.安装python依赖
+pip install pyopenssl ndg-httpsclient pyasn1
+cd caffe/python
+先root，再执行下面一句，否则可能权限不够
+for req in $(cat requirements.txt); do pip install $req; done
+
+4.编辑caffe所需的Makefile文件，配置
+cd caffe
+cp Makefile.config.example Makefile.config
+vim Makefile.config
+Makefile.config里面有依赖库的路径，及各种编译配置,取消USE_CUDNN := 1的注释，开启GPU，USE_LMDB := 1，USE_LEVELDB := 1
+配置运行环境，调用CUDA库，在/etc/ld.so.conf.d目录新建caffe.conf
+vim /etc/ld.so.conf.d/caffe.conf
+添加：
+/usr/local/cuda/lib64
+保存退出，执行:
+$sudo ldconfig
+
+5.编译caffe、pycaffe
+进入caffe根目录：
+make –j8
+测试一下结果：
+make test –j8
+make runtest –j8 
+runtest中要全通过
+make pycaffe -j8
+如果出现python/caffe/_caffe.hpp:8:31: fatal error: numpy/arrayobject.h: No such file or directory错误
+比对Make.config里面python路径  看看该路径下是否有numpy
+没有就用pip 和apt-get两个都把numpy卸载
+sudo apt-get remove python-numpy
+sudo pip uninstall numpy
+再重新安装 我使用apt-get重新安装了
+
+6.测试
+sh data/mnist/get_mnist.sh
+sh examples/mnist/create_mnist.sh
+sh examples/mnist/train_lenet.sh
+运行正常即通过
+ 
