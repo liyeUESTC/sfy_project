@@ -28,6 +28,7 @@ bool TaskManagerment::DestoryTask(int task_ID)
         {
             delete iter->second;
             iter->second = nullptr;
+            A
             return true;
         }
     }
