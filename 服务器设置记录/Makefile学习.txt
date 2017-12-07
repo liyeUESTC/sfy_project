@@ -1,4 +1,17 @@
-1.Makefile函数
+1.Makefile工作方式
+① 使用make命令时，实际会找到当前目录Makefile或makefile文件，找到第一个目标文件，然后检测依赖关系和调用命令
+② 当现实使用命令 如make clean  就是去Makefile文件中寻找目标文件all，然后检查依赖关系和调用命令
+2.Makefile变量
+定义: value1 = value2 value3
+使用：$(value1)
+Makefile内置变量
+$@  目标变量
+$^  所有依赖文件
+$<  第一个依赖文件
+举个例子：
+main:main.o my_tool1.o my_tool2.o 
+$@指main   $^指main.o my_tool1.o my_tool2.o   $<指main.o
+3.Makefile函数
   lastword TEXT 
 作用：返回TEXT文本中的最后1个单词。相当于$(word $(words TEXT), TEXT) 
 示例：$(lastword aaa bbb ccc) 结果为 ccc 
