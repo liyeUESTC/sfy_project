@@ -30,12 +30,20 @@ $sudo ldconfig
 
 5.编译caffe、pycaffe
 进入caffe根目录：
-make –j8
+（1）make –j8
 测试一下结果：
 make test –j8
 make runtest –j8 
 runtest中要全通过
 make pycaffe -j8
+（2）创建build文件夹，进行cmake
+mkdir build
+cd build
+cmake ..
+make all -j16
+make test -j16
+make runtest -j16
+make pycaffe -j16
 如果出现python/caffe/_caffe.hpp:8:31: fatal error: numpy/arrayobject.h: No such file or directory错误
 比对Make.config里面python路径  看看该路径下是否有numpy
 没有就用pip 和apt-get两个都把numpy卸载
